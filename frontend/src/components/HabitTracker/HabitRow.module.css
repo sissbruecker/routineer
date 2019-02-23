@@ -1,0 +1,13 @@
+.root {
+    height: var(--grid-size);
+    display: flex;
+    flex-direction: row;
+}
+
+.root > * {
+    flex: 0 0 auto;
+}
+
+.separator {
+    border-bottom: solid 2px #222;
+}

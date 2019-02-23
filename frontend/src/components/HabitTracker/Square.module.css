@@ -1,0 +1,6 @@
+.root {
+    width: var(--grid-size);
+    height: var(--grid-size);
+    line-height: var(--grid-size);
+    text-align: center;
+}

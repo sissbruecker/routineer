@@ -1,0 +1,8 @@
+.root {
+    display: flex;
+    flex-direction: row;
+}
+
+.root > * {
+    flex: 0 0 auto;
+}

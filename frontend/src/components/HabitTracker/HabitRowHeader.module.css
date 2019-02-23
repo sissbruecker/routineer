@@ -1,0 +1,7 @@
+:root {
+    --row-label-size: 8;
+}
+
+.root {
+    width: calc(var(--row-label-size) * var(--grid-size));
+}

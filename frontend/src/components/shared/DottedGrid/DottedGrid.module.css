@@ -1,0 +1,19 @@
+:root {
+    --bg-color: #fff;
+    --dot-color: #aaa;
+
+    --dot-size: 2px;
+    --dot-space: 22px;
+}
+
+.root {
+
+    height: 300px;
+    margin-left: 20px;
+
+    background-color: var(--bg-color);
+    background-image: radial-gradient(var(--dot-color) 5%, transparent 6%),
+    radial-gradient(var(--dot-color) 5%, transparent 6%);
+    background-size: 24px 24px;
+    background-position: -12px -12px, -12px -12px;
+}
