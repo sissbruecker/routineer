@@ -1,7 +1,7 @@
 import {HabitPerformance} from './HabitPerformance';
-import {Month} from './Month';
+import {DateRange} from './DateRange';
 
 export class HabitData {
-    month: Month;
+    range: DateRange;
     performances: HabitPerformance[] = [];
 }

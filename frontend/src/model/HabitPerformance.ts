@@ -1,26 +1,26 @@
 import {Habit} from './Habit';
-import {Month} from './Month';
+import {DateRange} from './DateRange';
+import {Day} from './Day';
 
 export class HabitPerformance {
 
     habit: Habit;
-    month: Month;
+    range: DateRange;
 
-    private _data: boolean[] = [];
+    private _data: any = {};
 
-    constructor(habit: Habit, month: Month) {
+    constructor(habit: Habit, range: DateRange) {
         this.habit = habit;
-        this.month = month;
-        this._data = month.createDatesArray(false);
+        this.range = range;
+        this._data = range.days.map(() => false);
     }
 
-    isPerformed(day: number) {
-        return day < this._data.length
-            && this._data[day];
+    isPerformed(day: Day) {
+        return this._data[day.key];
     }
 
-    setPerformed(day: number, done: boolean) {
-        if (day >= this._data.length) return;
-        this._data[day] = done;
+    setPerformed(day: Day, done: boolean) {
+        if (!this.range.contains(day)) return;
+        this._data[day.key] = done;
     }
 }

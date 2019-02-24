@@ -24,7 +24,7 @@ export class DateUtil {
         return result;
     }
 
-    static getShortDayName(date: Date) {
-        return DAY_NAMES[date.getDay()];
+    static getShortDayName(day: number) {
+        return DAY_NAMES[day];
     }
 }

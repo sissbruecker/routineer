@@ -1,20 +1,21 @@
 import * as React from 'react';
 import {BaseScale} from './BaseScale';
-import {Month} from '../../model/Month';
 import {Square} from './Square';
+import {DateRange} from '../../model/DateRange';
+import {Day} from '../../model/Day';
 
 interface DateScaleProps {
-    month: Month;
+    range: DateRange;
 }
 
 export class DateScale extends React.Component<DateScaleProps> {
 
     render() {
-        return <BaseScale month={this.props.month}
+        return <BaseScale range={this.props.range}
                           squareRenderer={this.renderSquare}/>
     }
 
-    renderSquare(month: Month, day: number) {
-        return <Square>{day + 1}</Square>
+    renderSquare(day: Day) {
+        return <Square>{day.date}</Square>
     }
 }

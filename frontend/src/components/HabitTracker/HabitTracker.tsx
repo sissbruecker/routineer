@@ -16,7 +16,7 @@ interface HabitTrackerProps {
 export class HabitTracker extends React.Component<HabitTrackerProps> {
     render() {
         const { habitData } = this.props;
-        const month = habitData.month;
+        const range = habitData.range;
 
         const habitRows = habitData.performances
             .map(performance => this.renderHabitRow(performance));
@@ -27,11 +27,11 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
                 <DottedGrid>
                     <HabitRow separator>
                         <HabitRowHeader/>
-                        <DateScale month={month}/>
+                        <DateScale range={range}/>
                     </HabitRow>
                     <HabitRow>
                         <HabitRowHeader/>
-                        <DayNameScale month={month}/>
+                        <DayNameScale range={range}/>
                     </HabitRow>
                     {habitRows}
                 </DottedGrid>
