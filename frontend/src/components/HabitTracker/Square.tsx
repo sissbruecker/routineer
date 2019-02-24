@@ -1,10 +1,23 @@
 import * as React from 'react';
+import cn from 'classnames';
 import styles from './Square.module.css';
 
-export class Square extends React.Component<{}> {
+interface SquareProps {
+    className?: string;
+    style?: any;
+}
+
+export class Square extends React.Component<SquareProps> {
     render() {
+
+        const classes = cn(
+            styles.root,
+            this.props.className
+        );
+
         return (
-            <div className={styles.root}>{this.props.children}</div>
+            <div className={classes}
+                 style={this.props.style}>{this.props.children}</div>
         );
     }
 }

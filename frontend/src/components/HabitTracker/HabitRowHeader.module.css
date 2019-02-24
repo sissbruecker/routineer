@@ -4,4 +4,7 @@
 
 .root {
     width: calc(var(--row-label-size) * var(--grid-size));
+    padding-left: 4px;
+
+    font-family: 'IndieFlower', cursive;
 }

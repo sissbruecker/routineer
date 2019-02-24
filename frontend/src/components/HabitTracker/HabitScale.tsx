@@ -4,6 +4,7 @@ import {BaseScale} from './BaseScale';
 import {Month} from '../../model/Month';
 import {Square} from './Square';
 import bind from 'bind-decorator';
+import {PerformedSquare} from './PerformedSquare';
 
 interface HabitScaleProps {
     performance: HabitPerformance;
@@ -17,6 +18,8 @@ export class HabitScale extends React.Component<HabitScaleProps> {
     @bind
     renderSquare(month: Month, day: number) {
         const performed = this.props.performance.isPerformed(day);
-        return <Square>{performed ? '✅' : ''}</Square>
+        return performed
+            ? <PerformedSquare color={this.props.performance.habit.color}/>
+            : <Square/>;
     }
 }

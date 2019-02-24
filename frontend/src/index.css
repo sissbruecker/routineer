@@ -22,3 +22,9 @@ code {
     width: 100%;
     height: 100%;
 }
+
+/* Fonts */
+@font-face {
+    font-family: 'IndieFlower';
+    src: local('IndieFlower'), url(./assets/fonts/Indie_Flower/IndieFlower.ttf) format('truetype');
+}

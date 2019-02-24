@@ -1,0 +1,5 @@
+.root {
+    /*background-color: greenyellow;*/
+    mask-image: url(../../assets/images/performed.svg);
+    mask-size: cover;
+}

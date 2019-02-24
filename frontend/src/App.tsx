@@ -18,8 +18,10 @@ class App extends Component {
         habit1.name = 'Morning meditation';
         const habit2 = new Habit();
         habit2.name = 'Morning yoga';
+        habit2.color = 'aquamarine';
         const habit3 = new Habit();
         habit3.name = 'Morning reflection';
+        habit3.color = 'fuchsia';
 
         const performance1 = new HabitPerformance(habit1, month);
         const performance2 = new HabitPerformance(habit2, month);
