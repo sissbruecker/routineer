@@ -1,13 +1,13 @@
 import * as React from 'react';
-import styles from './HabitTracker.module.css';
+import {HabitData} from '../../model/HabitData';
+import {HabitPerformanceData} from '../../model/HabitPerformanceData';
 import {DottedGrid} from '../shared/DottedGrid/DottedGrid';
 import {DateScale} from './DateScale';
 import {DayNameScale} from './DayNameScale';
 import {HabitRow} from './HabitRow';
 import {HabitRowHeader} from './HabitRowHeader';
-import {HabitData} from '../../model/HabitData';
-import {HabitPerformance} from '../../model/HabitPerformance';
 import {HabitScale} from './HabitScale';
+import styles from './HabitTracker.module.css';
 
 interface HabitTrackerProps {
     habitData: HabitData;
@@ -39,7 +39,7 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
         );
     }
 
-    renderHabitRow(performance: HabitPerformance) {
+    renderHabitRow(performance: HabitPerformanceData) {
         return (
             <HabitRow>
                 <HabitRowHeader>{performance.habit.name}</HabitRowHeader>

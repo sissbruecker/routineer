@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Square} from './Square';
 import styles from './PerformedSquare.module.css';
+import {Square} from './Square';
 
 interface PerformedSquareProps {
     color: string;

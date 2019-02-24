@@ -1,13 +1,13 @@
-import * as React from 'react';
-import {HabitPerformance} from '../../model/HabitPerformance';
-import {BaseScale} from './BaseScale';
-import {Square} from './Square';
 import bind from 'bind-decorator';
-import {PerformedSquare} from './PerformedSquare';
+import * as React from 'react';
 import {Day} from '../../model/Day';
+import {HabitPerformanceData} from '../../model/HabitPerformanceData';
+import {BaseScale} from './BaseScale';
+import {PerformedSquare} from './PerformedSquare';
+import {Square} from './Square';
 
 interface HabitScaleProps {
-    performance: HabitPerformance;
+    performance: HabitPerformanceData;
 }
 
 export class HabitScale extends React.Component<HabitScaleProps> {

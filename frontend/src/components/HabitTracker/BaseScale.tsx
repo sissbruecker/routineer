@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styles from './BaseScale.module.css';
 import {DateRange} from '../../model/DateRange';
 import {Day} from '../../model/Day';
+import styles from './BaseScale.module.css';
 
 interface SquareRenderer {
     (day: Day): JSX.Element;

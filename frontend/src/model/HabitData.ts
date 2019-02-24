@@ -1,7 +1,12 @@
-import {HabitPerformance} from './HabitPerformance';
 import {DateRange} from './DateRange';
+import {HabitPerformanceData} from './HabitPerformanceData';
 
 export class HabitData {
     range: DateRange;
-    performances: HabitPerformance[] = [];
+    performances: HabitPerformanceData[] = [];
+
+    constructor(range: DateRange, performances: HabitPerformanceData[]) {
+        this.range = range;
+        this.performances = performances;
+    }
 }

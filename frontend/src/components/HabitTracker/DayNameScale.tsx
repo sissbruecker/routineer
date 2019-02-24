@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {BaseScale} from './BaseScale';
-import {DateUtil} from '../../util/DateUtil';
-import {Square} from './Square';
 import {DateRange} from '../../model/DateRange';
 import {Day} from '../../model/Day';
+import {DateUtil} from '../../util/DateUtil';
+import {BaseScale} from './BaseScale';
+import {Square} from './Square';
 
 interface DayNameScaleProps {
     range: DateRange;
