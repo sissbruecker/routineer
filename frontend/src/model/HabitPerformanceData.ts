@@ -1,4 +1,4 @@
-import {observable} from 'mobx';
+import {action, observable} from 'mobx';
 import {DateRange} from './DateRange';
 import {Day} from './Day';
 import {Habit} from './Habit';
@@ -10,7 +10,7 @@ export class HabitPerformanceData {
     range: DateRange;
 
     @observable
-    private readonly _data: any = observable({});
+    _data: number[] = [];
 
     constructor(habit: Habit, range: DateRange, performances: HabitPerformed[] = null) {
         this.habit = habit;
@@ -22,12 +22,17 @@ export class HabitPerformanceData {
     }
 
     isPerformed(day: Day) {
-        if (!this._data.hasOwnProperty(day.key)) return false;
-        return this._data[day.key];
+        return this._data.indexOf(day.key) >= 0;
     }
 
+    @action
     setPerformed(day: Day, done: boolean) {
-        if (!this.range.contains(day)) return;
-        this._data[day.key] = done;
+        if (this.isPerformed(day)) {
+            this._data.splice(this._data.indexOf(day.key), 1);
+        }
+
+        if (done) {
+            this._data.push(day.key);
+        }
     }
 }
