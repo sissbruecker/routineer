@@ -1,0 +1,15 @@
+.root {
+
+}
+
+.header .menu {
+    display: none;
+}
+
+.header:hover .menu {
+    display: block;
+}
+
+.menu.open {
+    display: block;
+}

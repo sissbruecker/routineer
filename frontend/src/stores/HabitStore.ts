@@ -43,6 +43,13 @@ export class HabitStore {
     }
 
     @action
+    async removeHabit(habit: Habit) {
+        await this.backend.removeHabit(habit);
+        const index = this.data.performances.findIndex(performance => performance.habit.id === habit.id);
+        this.data.performances.splice(index, 1);
+    }
+
+    @action
     async setHabitPerformed(habit: Habit, day: Day, performed: boolean) {
 
         await this.backend.setPerformed(habit, day, performed);

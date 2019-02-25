@@ -4,7 +4,13 @@
 
 .root {
     width: calc(var(--row-label-size) * var(--grid-size));
-    padding-left: 4px;
+
+    display: flex;
+    flex-direction: row;
 
     font-family: 'IndieFlower', cursive;
+}
+
+.root > input {
+    width: calc(calc(var(--row-label-size) - 1) * var(--grid-size));
 }

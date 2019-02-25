@@ -37,6 +37,11 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
     }
 
     @bind
+    handleDeleteHabit(habit: Habit) {
+        return this.props.habitStore.removeHabit(habit);
+    }
+
+    @bind
     handleSetPerformed(habit: Habit, day: Day, performed: boolean) {
         return this.props.habitStore.setHabitPerformed(habit, day, performed);
     }
@@ -50,6 +55,7 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
             <HabitRow key={performance.habit.id}
                       performance={performance}
                       onChangeHabit={this.handleHabitChange}
+                      onDeleteHabit={this.handleDeleteHabit}
                       onSetPerformed={this.handleSetPerformed}/>
         );
 

@@ -1,0 +1,19 @@
+.root {
+    width: var(--grid-size);
+    height: var(--grid-size);
+    box-sizing: border-box;
+    margin: 0;
+    line-height: inherit;
+    background: none;
+    background: no-repeat center;
+    outline: none;
+    cursor: pointer;
+
+    padding: 2px 4px;
+    border: solid transparent 1px;
+    border-radius: 5px;
+}
+
+.root:hover, .root.active {
+    background: lightblue;
+}

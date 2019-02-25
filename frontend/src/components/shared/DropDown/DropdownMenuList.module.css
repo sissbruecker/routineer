@@ -1,0 +1,8 @@
+.root {
+  margin: 0;
+  padding: 12px 0;
+}
+
+.removeTopPadding {
+  padding-top: 0;
+}

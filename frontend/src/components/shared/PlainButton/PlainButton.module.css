@@ -1,0 +1,12 @@
+.root {
+    height: auto;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    line-height: inherit;
+    border: none;
+    background: none;
+    background: no-repeat center;
+    outline: none;
+    cursor: pointer;
+}

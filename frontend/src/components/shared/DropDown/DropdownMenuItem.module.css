@@ -1,0 +1,21 @@
+:root {
+    --dd-line-height: 24px;
+    --dd-highlight-color: #000;
+    --dd-highlight-background: #eee;
+    --dd-border-color: #888;
+}
+
+.root {
+    padding: 0px 16px;
+    height: var(--dd-line-height);
+    line-height: var(--dd-line-height);
+    /*border-top: solid 1px transparent;*/
+    /*border-bottom: solid 1px transparent;*/
+    cursor: default;
+}
+
+.withHover:hover, .active {
+    color: var(--dd-highlight-color);
+    background: var(--dd-highlight-background);
+    border-color: var(--dd-border-color);
+}
