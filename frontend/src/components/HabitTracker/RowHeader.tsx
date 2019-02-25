@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styles from './HabitRowHeader.module.css';
+import styles from './RowHeader.module.css';
 
-export class HabitRowHeader extends React.Component<{}> {
+export class RowHeader extends React.Component<{}> {
     render() {
         return (
             <div className={styles.root}>

@@ -17,6 +17,6 @@ export class DayNameScale extends React.Component<DayNameScaleProps> {
 
     renderSquare(day: Day) {
         const label = DateUtil.getShortDayName(day.day);
-        return <Square>{label}</Square>;
+        return <Square key={day.key}>{label}</Square>;
     }
 }

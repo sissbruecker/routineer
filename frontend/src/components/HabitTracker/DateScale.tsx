@@ -16,6 +16,6 @@ export class DateScale extends React.Component<DateScaleProps> {
     }
 
     renderSquare(day: Day) {
-        return <Square>{day.date}</Square>
+        return <Square key={day.key}>{day.date}</Square>
     }
 }

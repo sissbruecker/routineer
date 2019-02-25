@@ -1,15 +1,16 @@
+import bind from 'bind-decorator';
 import {inject, observer} from 'mobx-react';
 import * as React from 'react';
 import {MonthRange} from '../../model/DateRange';
-import {HabitPerformanceData} from '../../model/HabitPerformanceData';
+import {Habit} from '../../model/Habit';
 import {HabitStore} from '../../stores/HabitStore';
 import {DottedGrid} from '../shared/DottedGrid/DottedGrid';
 import {DateScale} from './DateScale';
 import {DayNameScale} from './DayNameScale';
 import {HabitRow} from './HabitRow';
-import {HabitRowHeader} from './HabitRowHeader';
-import {HabitScale} from './HabitScale';
 import styles from './HabitTracker.module.css';
+import {Row} from './Row';
+import {RowHeader} from './RowHeader';
 
 interface HabitTrackerProps {
     habitStore?: HabitStore;
@@ -23,39 +24,37 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
         this.props.habitStore.setRange(MonthRange.current());
     }
 
+    @bind
+    handleHabitChange(habit: Habit, changes: Partial<Habit>) {
+        this.props.habitStore.changeHabit(habit, changes);
+    }
+
     render() {
         const { range, data } = this.props.habitStore;
 
-        const habitRows = data
-            ? data.performances.map(performance => this.renderHabitRow(performance))
-            : null;
+        if (!data) return null;
 
-        return data
-            ? (
-                <div className={styles.root}>
-                    <h1>Habit Tracker</h1>
-                    <DottedGrid>
-                        <HabitRow separator>
-                            <HabitRowHeader/>
-                            <DateScale range={range}/>
-                        </HabitRow>
-                        <HabitRow>
-                            <HabitRowHeader/>
-                            <DayNameScale range={range}/>
-                        </HabitRow>
-                        {habitRows}
-                    </DottedGrid>
-                </div>
-            )
-            : null;
-    }
+        const habitRows = data.performances.map(performance =>
+            <HabitRow key={performance.habit.id}
+                      performance={performance}
+                      onChangeHabit={this.handleHabitChange}/>
+        );
 
-    renderHabitRow(performance: HabitPerformanceData) {
         return (
-            <HabitRow>
-                <HabitRowHeader>{performance.habit.name}</HabitRowHeader>
-                <HabitScale performance={performance}/>
-            </HabitRow>
+            <div className={styles.root}>
+                <h1>Habit Tracker</h1>
+                <DottedGrid>
+                    <Row separator>
+                        <RowHeader/>
+                        <DateScale range={range}/>
+                    </Row>
+                    <Row>
+                        <RowHeader/>
+                        <DayNameScale range={range}/>
+                    </Row>
+                    {habitRows}
+                </DottedGrid>
+            </div>
         );
     }
 }

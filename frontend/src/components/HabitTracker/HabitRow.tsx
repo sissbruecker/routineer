@@ -1,23 +1,34 @@
-import cn from 'classnames';
-import * as React from 'react';
-import styles from './HabitRow.module.css';
+import bind from 'bind-decorator';
+import React from 'react';
+import {Habit} from '../../model/Habit';
+import {HabitPerformanceData} from '../../model/HabitPerformanceData';
+import {HabitNameInput} from './HabitNameInput';
+import {HabitScale} from './HabitScale';
+import {Row} from './Row';
+import {RowHeader} from './RowHeader';
 
 interface HabitRowProps {
-    separator?: boolean;
+    performance: HabitPerformanceData;
+    onChangeHabit: (habit: Habit, changes: Partial<Habit>) => void;
 }
 
 export class HabitRow extends React.Component<HabitRowProps> {
-    render() {
 
-        const classes = cn(
-            styles.root,
-            this.props.separator && styles.separator
-        );
+    @bind
+    handleNameChange(name: string) {
+        this.props.onChangeHabit(this.props.performance.habit, { name });
+    }
+
+    render() {
+        const { performance } = this.props;
 
         return (
-            <div className={classes}>
-                {this.props.children}
-            </div>
+            <Row>
+                <RowHeader>
+                    <HabitNameInput name={performance.habit.name} onChange={this.handleNameChange}/>
+                </RowHeader>
+                <HabitScale performance={performance}/>
+            </Row>
         );
     }
 }

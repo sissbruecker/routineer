@@ -19,7 +19,7 @@ export class HabitScale extends React.Component<HabitScaleProps> {
     renderSquare(day: Day) {
         const performed = this.props.performance.isPerformed(day);
         return performed
-            ? <PerformedSquare color={this.props.performance.habit.color}/>
-            : <Square/>;
+            ? <PerformedSquare key={day.key} color={this.props.performance.habit.color}/>
+            : <Square key={day.key}/>;
     }
 }
