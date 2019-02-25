@@ -55,7 +55,8 @@ export class LocalHabitBackend implements HabitBackend {
 
     async getHabits(): Promise<Habit[]> {
         return (await this.getStore(COLLECTION_HABITS))
-            .getAll();
+            .getAll()
+            .then(habits => habits.map(Habit.from));
     }
 
     async saveHabit(habit: Habit): Promise<Habit> {

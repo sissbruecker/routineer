@@ -6,7 +6,8 @@ import {PlainInput} from '../shared/PlainInput/PlainInput';
 
 interface HabitNameInputProps {
     name: string;
-    onChange: (name: string) => void;
+    placeholder?: string;
+    onChange: (name: string) => Promise<any>;
 }
 
 @observer
@@ -28,12 +29,14 @@ export class HabitNameInput extends React.Component<HabitNameInputProps> {
     }
 
     @bind
-    handleNameCommit() {
-        if (!this.draftName) {
+    async handleNameCommit() {
+        if (this.draftName == null || this.draftName.trim().length == 0) {
             this.draftName = null;
+            return;
         }
 
-        this.props.onChange(this.draftName);
+        await this.props.onChange(this.draftName);
+        this.draftName = null;
     }
 
     @bind
@@ -46,6 +49,7 @@ export class HabitNameInput extends React.Component<HabitNameInputProps> {
     render() {
         return (
             <PlainInput value={this.editedName}
+                        placeholder={this.props.placeholder}
                         onChange={this.handleNameChange}
                         onBlur={this.handleNameCommit}
                         onKeyDown={this.handleEnter}/>

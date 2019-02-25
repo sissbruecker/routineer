@@ -2,9 +2,7 @@ import cn from 'classnames';
 import * as React from 'react';
 import styles from './Square.module.css';
 
-interface SquareProps {
-    className?: string;
-    style?: any;
+interface SquareProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 export class Square extends React.Component<SquareProps> {
@@ -16,8 +14,7 @@ export class Square extends React.Component<SquareProps> {
         );
 
         return (
-            <div className={classes}
-                 style={this.props.style}>{this.props.children}</div>
+            <div {...this.props} className={classes}>{this.props.children}</div>
         );
     }
 }

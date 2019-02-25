@@ -2,11 +2,13 @@ import bind from 'bind-decorator';
 import {inject, observer} from 'mobx-react';
 import * as React from 'react';
 import {MonthRange} from '../../model/DateRange';
+import {Day} from '../../model/Day';
 import {Habit} from '../../model/Habit';
 import {HabitStore} from '../../stores/HabitStore';
 import {DottedGrid} from '../shared/DottedGrid/DottedGrid';
 import {DateScale} from './DateScale';
 import {DayNameScale} from './DayNameScale';
+import {EmptyHabitRow} from './EmptyHabitRow';
 import {HabitRow} from './HabitRow';
 import styles from './HabitTracker.module.css';
 import {Row} from './Row';
@@ -25,8 +27,18 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
     }
 
     @bind
+    handleCreateHabit(props: Partial<Habit>) {
+        return this.props.habitStore.createHabit(props);
+    }
+
+    @bind
     handleHabitChange(habit: Habit, changes: Partial<Habit>) {
-        this.props.habitStore.changeHabit(habit, changes);
+        return this.props.habitStore.changeHabit(habit, changes);
+    }
+
+    @bind
+    handleSetPerformed(habit: Habit, day: Day, performed: boolean) {
+        return this.props.habitStore.setHabitPerformed(habit, day, performed);
     }
 
     render() {
@@ -37,7 +49,8 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
         const habitRows = data.performances.map(performance =>
             <HabitRow key={performance.habit.id}
                       performance={performance}
-                      onChangeHabit={this.handleHabitChange}/>
+                      onChangeHabit={this.handleHabitChange}
+                      onSetPerformed={this.handleSetPerformed}/>
         );
 
         return (
@@ -53,6 +66,7 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
                         <DayNameScale range={range}/>
                     </Row>
                     {habitRows}
+                    <EmptyHabitRow onCreateHabit={this.handleCreateHabit}/>
                 </DottedGrid>
             </div>
         );

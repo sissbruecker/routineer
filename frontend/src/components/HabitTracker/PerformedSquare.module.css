@@ -1,5 +1,16 @@
 .root {
-    /*background-color: greenyellow;*/
+    cursor: pointer;
+    opacity: 0;
+}
+
+.root:hover {
+    opacity: 0.5;
+    mask-image: url(../../assets/images/performed.svg);
+    mask-size: cover;
+}
+
+.performed {
+    opacity: 1;
     mask-image: url(../../assets/images/performed.svg);
     mask-size: cover;
 }

@@ -13,6 +13,6 @@ export interface HabitBackend {
 
     getHabitData(range: DateRange): Promise<HabitData>;
 
-    setPerformed(habitId: Habit, day: Day, performed: boolean): Promise<any>;
+    setPerformed(habit: Habit, day: Day, performed: boolean): Promise<any>;
 }
 
