@@ -1,6 +1,8 @@
+import {inject, observer} from 'mobx-react';
 import * as React from 'react';
-import {HabitData} from '../../model/HabitData';
+import {MonthRange} from '../../model/DateRange';
 import {HabitPerformanceData} from '../../model/HabitPerformanceData';
+import {HabitStore} from '../../stores/HabitStore';
 import {DottedGrid} from '../shared/DottedGrid/DottedGrid';
 import {DateScale} from './DateScale';
 import {DayNameScale} from './DayNameScale';
@@ -10,33 +12,42 @@ import {HabitScale} from './HabitScale';
 import styles from './HabitTracker.module.css';
 
 interface HabitTrackerProps {
-    habitData: HabitData;
+    habitStore?: HabitStore;
 }
 
+@inject('habitStore')
+@observer
 export class HabitTracker extends React.Component<HabitTrackerProps> {
+
+    componentDidMount(): void {
+        this.props.habitStore.setRange(MonthRange.current());
+    }
+
     render() {
-        const { habitData } = this.props;
-        const range = habitData.range;
+        const { range, data } = this.props.habitStore;
 
-        const habitRows = habitData.performances
-            .map(performance => this.renderHabitRow(performance));
+        const habitRows = data
+            ? data.performances.map(performance => this.renderHabitRow(performance))
+            : null;
 
-        return (
-            <div className={styles.root}>
-                <h1>Habit Tracker</h1>
-                <DottedGrid>
-                    <HabitRow separator>
-                        <HabitRowHeader/>
-                        <DateScale range={range}/>
-                    </HabitRow>
-                    <HabitRow>
-                        <HabitRowHeader/>
-                        <DayNameScale range={range}/>
-                    </HabitRow>
-                    {habitRows}
-                </DottedGrid>
-            </div>
-        );
+        return data
+            ? (
+                <div className={styles.root}>
+                    <h1>Habit Tracker</h1>
+                    <DottedGrid>
+                        <HabitRow separator>
+                            <HabitRowHeader/>
+                            <DateScale range={range}/>
+                        </HabitRow>
+                        <HabitRow>
+                            <HabitRowHeader/>
+                            <DayNameScale range={range}/>
+                        </HabitRow>
+                        {habitRows}
+                    </DottedGrid>
+                </div>
+            )
+            : null;
     }
 
     renderHabitRow(performance: HabitPerformanceData) {

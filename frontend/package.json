@@ -11,6 +11,8 @@
     "bind-decorator": "^1.0.11",
     "classnames": "^2.2.6",
     "idb": "^3.0.2",
+    "mobx": "^5.9.0",
+    "mobx-react": "^5.4.3",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5",
