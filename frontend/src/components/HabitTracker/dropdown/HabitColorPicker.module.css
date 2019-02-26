@@ -1,0 +1,26 @@
+:root {
+    --cp-item-size: 24px;
+}
+
+.root {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.root > *:not(:first-child) {
+    margin-left: 12px;
+}
+
+.color {
+    width: var(--cp-item-size);
+    height: var(--cp-item-size);
+    border: solid 1px transparent;
+    cursor: pointer;
+}
+
+.color.selected {
+    border: solid 1px black;
+}

@@ -2,7 +2,7 @@ import bind from 'bind-decorator';
 import cn from 'classnames';
 import {observer} from 'mobx-react';
 import * as React from 'react';
-import {Day} from '../../model/Day';
+import {Day} from '../../../model/Day';
 import styles from './PerformedSquare.module.css';
 import {Square} from './Square';
 

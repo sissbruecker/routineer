@@ -5,12 +5,12 @@
 
 .root:hover {
     opacity: 0.5;
-    mask-image: url(../../assets/images/performed.svg);
+    mask-image: url(../../../assets/images/performed.svg);
     mask-size: cover;
 }
 
 .root.performed, .root:hover.performed {
     opacity: 1;
-    mask-image: url(../../assets/images/performed.svg);
+    mask-image: url(../../../assets/images/performed.svg);
     mask-size: cover;
 }

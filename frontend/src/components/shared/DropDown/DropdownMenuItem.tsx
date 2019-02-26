@@ -7,6 +7,7 @@ interface DropdownMenuItemProps {
     itemId?: any;
     className?: string;
     disableHover?: boolean;
+    autoSize?: boolean;
     onClick?: (event: MouseEvent<HTMLElement>) => void;
 }
 
@@ -17,6 +18,7 @@ export class DropdownMenuItem extends React.Component<DropdownMenuItemProps> {
             styles.root,
             text.truncate,
             !this.props.disableHover && styles.withHover,
+            this.props.autoSize && styles.autoSize,
             this.props.className
         );
 

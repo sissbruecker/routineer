@@ -2,16 +2,21 @@ import bind from 'bind-decorator';
 import {observable} from 'mobx';
 import {observer} from 'mobx-react';
 import React from 'react';
-import {DropDown, DropDownContent, DropDownTrigger, OpenStateCallback} from '../shared/DropDown/DropDown';
-import {DropdownButton} from '../shared/DropDown/DropdownButton';
-import {DropdownMenuItem} from '../shared/DropDown/DropdownMenuItem';
-import {DropdownMenuList} from '../shared/DropDown/DropdownMenuList';
-import {DropdownWindow} from '../shared/DropDown/DropdownWindow';
+import {Habit} from '../../../model/Habit';
+import {DropDown, DropDownContent, DropDownTrigger, OpenStateCallback} from '../../shared/DropDown/DropDown';
+import {DropdownButton} from '../../shared/DropDown/DropdownButton';
+import {DropdownMenuItem} from '../../shared/DropDown/DropdownMenuItem';
+import {DropdownMenuList} from '../../shared/DropDown/DropdownMenuList';
+import {DropdownMenuSeparator} from '../../shared/DropDown/DropdownMenuSeparator';
+import {DropdownWindow} from '../../shared/DropDown/DropdownWindow';
+import {HabitColorPicker} from './HabitColorPicker';
 
 interface HabitDropdownProps {
+    habit: Habit;
     className?: string;
     onOpenStateChange?: OpenStateCallback;
-    onDeleteHabit: () => void;
+    onDeleteHabit: (habit: Habit) => void;
+    onChangeHabit: (habit: Habit, changes: Partial<Habit>) => void;
 }
 
 @observer
@@ -35,8 +40,13 @@ export class HabitDropdown extends React.Component<HabitDropdownProps> {
 
     @bind
     handleDeleteClick() {
-        this.props.onDeleteHabit();
+        this.props.onDeleteHabit(this.props.habit);
         this.dropdown.close();
+    }
+
+    @bind
+    handleSelectColor(color: string) {
+        this.props.onChangeHabit(this.props.habit, { color });
     }
 
     render() {
@@ -53,6 +63,12 @@ export class HabitDropdown extends React.Component<HabitDropdownProps> {
                     <DropdownWindow>
                         <DropdownMenuList>
                             <DropdownMenuItem onClick={this.handleDeleteClick}>Delete</DropdownMenuItem>
+                            <DropdownMenuSeparator/>
+                            <DropdownMenuItem disableHover autoSize>
+                                <span>Color</span>
+                                <HabitColorPicker selectedColor={this.props.habit.color}
+                                                  onChange={this.handleSelectColor}/>
+                            </DropdownMenuItem>
                         </DropdownMenuList>
                     </DropdownWindow>
                 </DropDownContent>

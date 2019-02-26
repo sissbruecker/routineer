@@ -6,12 +6,12 @@ import React from 'react';
 import {Day} from '../../model/Day';
 import {Habit} from '../../model/Habit';
 import {HabitPerformanceData} from '../../model/HabitPerformanceData';
-import {HabitDropdown} from './HabitDropdown';
+import {HabitDropdown} from './dropdown/HabitDropdown';
 import {HabitNameInput} from './HabitNameInput';
 import styles from './HabitRow.module.css';
-import {HabitScale} from './HabitScale';
 import {Row} from './Row';
 import {RowHeader} from './RowHeader';
+import {HabitScale} from './scales/HabitScale';
 
 interface HabitRowProps {
     performance: HabitPerformanceData;
@@ -35,11 +35,6 @@ export class HabitRow extends React.Component<HabitRowProps> {
     }
 
     @bind
-    handleDelete() {
-        return this.props.onDeleteHabit(this.props.performance.habit);
-    }
-
-    @bind
     handleOpenStateChange(open: boolean) {
         this.isMenuOpen = open;
     }
@@ -56,9 +51,11 @@ export class HabitRow extends React.Component<HabitRowProps> {
                 <RowHeader className={styles.header}>
                     <HabitNameInput name={performance.habit.name}
                                     onChange={this.handleNameChange}/>
-                    <HabitDropdown className={menuClasses}
+                    <HabitDropdown habit={performance.habit}
+                                   className={menuClasses}
                                    onOpenStateChange={this.handleOpenStateChange}
-                                   onDeleteHabit={this.handleDelete}/>
+                                   onDeleteHabit={this.props.onDeleteHabit}
+                                   onChangeHabit={this.props.onChangeHabit}/>
                 </RowHeader>
                 <HabitScale performance={performance}
                             onSetPerformed={this.props.onSetPerformed}/>

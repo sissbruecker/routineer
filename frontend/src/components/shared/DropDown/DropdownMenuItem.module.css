@@ -19,3 +19,7 @@
     background: var(--dd-highlight-background);
     border-color: var(--dd-border-color);
 }
+
+.autoSize {
+    height: auto;
+}

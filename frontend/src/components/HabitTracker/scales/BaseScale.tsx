@@ -1,7 +1,7 @@
 import {observer} from 'mobx-react';
 import * as React from 'react';
-import {DateRange} from '../../model/DateRange';
-import {Day} from '../../model/Day';
+import {DateRange} from '../../../model/DateRange';
+import {Day} from '../../../model/Day';
 import styles from './BaseScale.module.css';
 
 interface SquareRenderer {

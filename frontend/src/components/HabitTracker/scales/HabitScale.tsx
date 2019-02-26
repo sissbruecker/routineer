@@ -1,9 +1,9 @@
 import bind from 'bind-decorator';
 import {observer} from 'mobx-react';
 import * as React from 'react';
-import {Day} from '../../model/Day';
-import {Habit} from '../../model/Habit';
-import {HabitPerformanceData} from '../../model/HabitPerformanceData';
+import {Day} from '../../../model/Day';
+import {Habit} from '../../../model/Habit';
+import {HabitPerformanceData} from '../../../model/HabitPerformanceData';
 import {BaseScale} from './BaseScale';
 import {PerformedSquare} from './PerformedSquare';
 

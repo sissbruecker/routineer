@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {DateRange} from '../../model/DateRange';
-import {Day} from '../../model/Day';
+import {DateRange} from '../../../model/DateRange';
+import {Day} from '../../../model/Day';
 import {BaseScale} from './BaseScale';
 import {Square} from './Square';
 
