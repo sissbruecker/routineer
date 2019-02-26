@@ -1,6 +1,7 @@
 import {action, observable} from 'mobx';
 import shortid from 'shortid';
 import {HabitBackend} from '../backend/HabitBackend';
+import {ColorPalette} from '../model/ColorPalette';
 import {DateRange} from '../model/DateRange';
 import {Day} from '../model/Day';
 import {Habit} from '../model/Habit';
@@ -37,6 +38,7 @@ export class HabitStore {
     async createHabit(props: Partial<Habit>) {
         const habit = new Habit();
         habit.id = shortid.generate();
+        habit.color = ColorPalette.random();
         Object.assign(habit, props);
         await this.backend.saveHabit(habit);
 

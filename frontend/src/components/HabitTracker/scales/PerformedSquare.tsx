@@ -2,6 +2,7 @@ import bind from 'bind-decorator';
 import cn from 'classnames';
 import {observer} from 'mobx-react';
 import * as React from 'react';
+import {ColorPalette} from '../../../model/ColorPalette';
 import {Day} from '../../../model/Day';
 import styles from './PerformedSquare.module.css';
 import {Square} from './Square';
@@ -28,7 +29,7 @@ export class PerformedSquare extends React.Component<PerformedSquareProps> {
             styles.root,
             this.props.performed && styles.performed
         );
-        const inlineStyles = { backgroundColor: this.props.color || 'greenyellow' };
+        const inlineStyles = { backgroundColor: this.props.color || ColorPalette.first() };
 
         return <Square className={classes}
                        style={inlineStyles}

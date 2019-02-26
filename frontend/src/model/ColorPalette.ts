@@ -62,6 +62,11 @@ function getPalette(palette: PaletteType) {
 }
 
 export class ColorPalette {
+    static first(type: PaletteType = null) {
+        const palette = getPalette(type);
+        return palette[0];
+    }
+
     static random(type: PaletteType = null) {
         const palette = getPalette(type);
         return palette[Math.floor(Math.random() * palette.length)]
