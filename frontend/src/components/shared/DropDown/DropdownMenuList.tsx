@@ -2,13 +2,13 @@ import cn from 'classnames';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { cloneElement, ReactElement } from 'react';
+import {BasicProps} from '../../../util/BasicProps';
 import itemStyles from './DropdownMenuItem.module.css';
 import styles from './DropdownMenuList.module.css';
 
-interface DropdownMenuListProps {
+interface DropdownMenuListProps extends BasicProps {
     selectedIndex?: number;
     subsequentList?: boolean;
-    className?: string;
 }
 
 @observer

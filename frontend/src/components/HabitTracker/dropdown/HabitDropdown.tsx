@@ -3,6 +3,7 @@ import {observable} from 'mobx';
 import {observer} from 'mobx-react';
 import React from 'react';
 import {Habit} from '../../../model/Habit';
+import {BasicProps} from '../../../util/BasicProps';
 import {DropDown, DropDownContent, DropDownTrigger, OpenStateCallback} from '../../shared/DropDown/DropDown';
 import {DropdownButton} from '../../shared/DropDown/DropdownButton';
 import {DropdownMenuItem} from '../../shared/DropDown/DropdownMenuItem';
@@ -11,9 +12,8 @@ import {DropdownMenuSeparator} from '../../shared/DropDown/DropdownMenuSeparator
 import {DropdownWindow} from '../../shared/DropDown/DropdownWindow';
 import {HabitColorPicker} from './HabitColorPicker';
 
-interface HabitDropdownProps {
+interface HabitDropdownProps extends BasicProps {
     habit: Habit;
-    className?: string;
     onOpenStateChange?: OpenStateCallback;
     onDeleteHabit: (habit: Habit) => void;
     onChangeHabit: (habit: Habit, changes: Partial<Habit>) => void;

@@ -1,3 +1,4 @@
+import {LocaleUtil} from '../util/LocaleUtil';
 import {Day} from './Day';
 
 export class DateRange {
@@ -15,6 +16,21 @@ export class DateRange {
     randomDay() {
         if (this.days.length == 0) return this.from;
         return this.days[Math.floor(Math.random() * this.days.length)];
+    }
+
+    next(): DateRange {
+        // Not implemented
+        return this;
+    }
+
+    previous(): DateRange {
+        // Not implemented
+        return this;
+    }
+
+    get label() {
+        // Not implemented
+        return '';
     }
 
     constructor(from: Day, to: Day) {
@@ -48,6 +64,11 @@ export class WeekRange extends DateRange {
         return new WeekRange(nextStart, nextEnd);
     }
 
+    get label() {
+        // Not implemented
+        return '';
+    }
+
     static current() {
         const today = new Date();
 
@@ -75,6 +96,10 @@ export class MonthRange extends DateRange {
         const nextEnd = Day.from(nextStart.year, nextStart.month + 1, 0);
 
         return new MonthRange(nextStart, nextEnd);
+    }
+
+    get label() {
+        return LocaleUtil.getFullMonthName(this.from.month);
     }
 
     static current() {

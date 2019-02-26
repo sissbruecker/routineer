@@ -1,11 +1,11 @@
 import cn from 'classnames';
 import React, {MouseEvent} from 'react';
+import {BasicProps} from '../../../util/BasicProps';
 import text from '../../../util/text.module.css';
 import styles from './DropdownMenuItem.module.css';
 
-interface DropdownMenuItemProps {
+interface DropdownMenuItemProps extends BasicProps {
     itemId?: any;
-    className?: string;
     disableHover?: boolean;
     autoSize?: boolean;
     onClick?: (event: MouseEvent<HTMLElement>) => void;

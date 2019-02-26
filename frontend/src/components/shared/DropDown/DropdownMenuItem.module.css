@@ -1,4 +1,4 @@
-:root {
+.root {
     --dd-line-height: 24px;
     --dd-highlight-color: #000;
     --dd-highlight-background: #eee;
@@ -6,7 +6,7 @@
 }
 
 .root {
-    padding: 0px 16px;
+    padding: 0 16px;
     height: var(--dd-line-height);
     line-height: var(--dd-line-height);
     /*border-top: solid 1px transparent;*/

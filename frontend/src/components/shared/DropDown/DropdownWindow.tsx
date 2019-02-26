@@ -1,10 +1,10 @@
 import cn from 'classnames';
 import React, {Ref} from 'react';
+import {BasicProps} from '../../../util/BasicProps';
 import styles from './DropdownWindow.module.css';
 
-interface DropdownWindowProps {
+interface DropdownWindowProps extends BasicProps {
     forwardRef?: Ref<HTMLDivElement>;
-    className?: string;
     nose?: boolean;
     noseLeft?: boolean;
     noseRight?: boolean;

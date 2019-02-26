@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-import './App.css';
-import {HabitTracker} from './components/HabitTracker/HabitTracker';
+import styles from './App.module.css';
+import {HabitPage} from './components/HabitTracker/HabitPage';
 
-class App extends Component<{}> {
+export class App extends Component<{}> {
 
     render() {
         return (
-            <div className="App">
-                <HabitTracker/>
+            <div className={styles.root}>
+                <HabitPage/>
             </div>
         );
     }
 }
-
-export default App;

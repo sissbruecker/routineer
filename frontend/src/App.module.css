@@ -1,4 +1,9 @@
 .root {
     display: flex;
     flex-direction: column;
+    overflow: auto;
+}
+
+.root > * {
+    flex: 1 1 0;
 }

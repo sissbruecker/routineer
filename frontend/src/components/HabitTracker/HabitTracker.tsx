@@ -5,14 +5,13 @@ import {MonthRange} from '../../model/DateRange';
 import {Day} from '../../model/Day';
 import {Habit} from '../../model/Habit';
 import {HabitStore} from '../../stores/HabitStore';
-import {DottedGrid} from '../shared/DottedGrid/DottedGrid';
-import {DateScale} from './scales/DateScale';
-import {DayNameScale} from './scales/DayNameScale';
 import {EmptyHabitRow} from './EmptyHabitRow';
 import {HabitRow} from './HabitRow';
 import styles from './HabitTracker.module.css';
 import {Row} from './Row';
 import {RowHeader} from './RowHeader';
+import {DateScale} from './scales/DateScale';
+import {DayNameScale} from './scales/DayNameScale';
 
 interface HabitTrackerProps {
     habitStore?: HabitStore;
@@ -61,19 +60,16 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
 
         return (
             <div className={styles.root}>
-                <h1>Habit Tracker</h1>
-                <DottedGrid>
-                    <Row separator>
-                        <RowHeader/>
-                        <DateScale range={range}/>
-                    </Row>
-                    <Row>
-                        <RowHeader/>
-                        <DayNameScale range={range}/>
-                    </Row>
-                    {habitRows}
-                    <EmptyHabitRow onCreateHabit={this.handleCreateHabit}/>
-                </DottedGrid>
+                <Row separator>
+                    <RowHeader/>
+                    <DateScale range={range}/>
+                </Row>
+                <Row>
+                    <RowHeader/>
+                    <DayNameScale range={range}/>
+                </Row>
+                {habitRows}
+                <EmptyHabitRow onCreateHabit={this.handleCreateHabit}/>
             </div>
         );
     }

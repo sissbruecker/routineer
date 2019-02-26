@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {DateRange} from '../../../model/DateRange';
 import {Day} from '../../../model/Day';
-import {DateUtil} from '../../../util/DateUtil';
+import {LocaleUtil} from '../../../util/LocaleUtil';
 import {BaseScale} from './BaseScale';
 import {Square} from './Square';
 
@@ -16,7 +16,7 @@ export class DayNameScale extends React.Component<DayNameScaleProps> {
     }
 
     renderSquare(day: Day) {
-        const label = DateUtil.getShortDayName(day.day);
+        const label = LocaleUtil.getShortDayName(day.day);
         return <Square key={day.key}>{label}</Square>;
     }
 }

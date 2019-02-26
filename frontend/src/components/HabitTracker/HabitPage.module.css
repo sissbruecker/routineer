@@ -1,0 +1,14 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    padding: calc(2 * var(--grid-size)) calc(2 * var(--grid-size));
+}
+
+.headerButton {
+    font: inherit;
+    margin: 0 10px;
+}
+
+.headerButton:hover {
+    color: var(--default-highlight-color);
+}

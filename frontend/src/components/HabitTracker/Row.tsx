@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import * as React from 'react';
+import {BasicProps} from '../../util/BasicProps';
 import styles from './Row.module.css';
 
-interface RowProps {
-    className?: string;
+interface RowProps extends BasicProps {
     separator?: boolean;
 }
 

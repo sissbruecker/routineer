@@ -24,6 +24,16 @@ export class HabitStore {
     }
 
     @action
+    async moveNextRange() {
+        return this.setRange(this.range.next());
+    }
+
+    @action
+    async movePreviousRange() {
+        return this.setRange(this.range.previous());
+    }
+
+    @action
     async createHabit(props: Partial<Habit>) {
         const habit = new Habit();
         habit.id = shortid.generate();

@@ -1,3 +1,13 @@
+/* Theme / variables */
+:root {
+    --default-text-color: #222222;
+    --default-highlight-color: #87a8d0;
+
+    --grid-size: 24px;
+    --grid-size: 24px;
+}
+
+/* Global stuff */
 html, body {
     margin: 0;
     padding: 0;
@@ -11,6 +21,9 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    background: var(--bg-color);
+
 }
 
 code {
@@ -18,7 +31,11 @@ code {
     monospace;
 }
 
-#root {
+div {
+    box-sizing: border-box;
+}
+
+#root, #root > * {
     width: 100%;
     height: 100%;
 }
@@ -27,4 +44,16 @@ code {
 @font-face {
     font-family: 'IndieFlower';
     src: local('IndieFlower'), url(./assets/fonts/Indie_Flower/IndieFlower.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Cookie';
+    src: local('Cookie'), url(./assets/fonts/Cookie/Cookie-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'DancingScript';
+    src: local('DancingScript'), url(./assets/fonts/Dancing_Script/DancingScript-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Parisienne';
+    src: local('Parisienne'), url(./assets/fonts/Parisienne/Parisienne-Regular.ttf) format('truetype');
 }

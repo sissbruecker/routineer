@@ -1,0 +1,4 @@
+.root {
+    height: calc(3 * var(--grid-size));
+    font-family: DancingScript, cursive;
+}

@@ -1,7 +1,8 @@
 import bind from 'bind-decorator';
 import cn from 'classnames';
 import {observer} from 'mobx-react';
-import React, {cloneElement, ReactElement, ReactNode, Ref} from 'react';
+import React, {cloneElement, ReactElement, ReactNode} from 'react';
+import {BasicProps} from '../../../util/BasicProps';
 import styles from './DropDown.module.css';
 import {DropdownContainmentMode, DropdownLayoutOptions, DropdownSizeMode, layout} from './layout/DropdownLayout';
 
@@ -13,7 +14,7 @@ export interface OpenStateCallback {
     (state: boolean, programmatic: boolean): void;
 }
 
-interface DropDownProps {
+interface DropDownProps extends BasicProps {
     left?: boolean;
     right?: boolean;
     top?: boolean;
@@ -25,7 +26,6 @@ interface DropDownProps {
     containmentMode?: DropdownContainmentMode;
     containerMargin?: number;
     anchorProvider?: ElementProvider;
-    className?: string;
     onOpenStateChange?: OpenStateCallback;
 }
 
