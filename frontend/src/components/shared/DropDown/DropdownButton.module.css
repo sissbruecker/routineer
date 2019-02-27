@@ -15,5 +15,5 @@
 }
 
 .root:hover, .root.active {
-    background: lightblue;
+    color: var(--default-highlight-color);
 }
