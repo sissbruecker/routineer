@@ -46,7 +46,7 @@ export class LocalHabitBackend implements HabitBackend {
             habits.map(async habit => {
                 const performances = await this.getHabitPerformance(habit, range);
 
-                return new HabitPerformanceData(habit, range, performances);
+                return new HabitPerformanceData(habit, performances);
             })
         );
 
@@ -63,6 +63,28 @@ export class LocalHabitBackend implements HabitBackend {
         await (await this.getStore(COLLECTION_HABITS, 'readwrite'))
             .put(habit);
         return habit;
+    }
+
+    async moveHabit(habit: Habit, newIndex: number): Promise<any> {
+        const objectStore = (await this.getStore(COLLECTION_HABITS, 'readwrite'));
+
+        const allHabits = (await objectStore.getAll())
+            .map(Habit.from);
+
+        allHabits.sort((left, right) => left.orderIndex - right.orderIndex);
+
+        newIndex = Math.min(newIndex, allHabits.length - 1);
+        newIndex = Math.max(newIndex, 0);
+
+        const oldIndex = allHabits.findIndex(h => h.id === habit.id);
+        allHabits.splice(oldIndex, 1);
+        allHabits.splice(newIndex, 0, habit);
+
+        for (let i = 0; i < allHabits.length; i++) {
+            allHabits[i].orderIndex = i;
+        }
+
+        return Promise.all(allHabits.map(h => objectStore.put(h)));
     }
 
     async removeHabit(habit: Habit): Promise<any> {

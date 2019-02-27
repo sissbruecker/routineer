@@ -6,6 +6,7 @@ import {Day} from '../../model/Day';
 import {Habit} from '../../model/Habit';
 import {HabitStore} from '../../stores/HabitStore';
 import {EmptyHabitRow} from './EmptyHabitRow';
+import {HabitDragManager} from './HabitDragManager';
 import {HabitRow} from './HabitRow';
 import styles from './HabitTracker.module.css';
 import {Row} from './Row';
@@ -20,6 +21,13 @@ interface HabitTrackerProps {
 @inject('habitStore')
 @observer
 export class HabitTracker extends React.Component<HabitTrackerProps> {
+
+    dragManager: HabitDragManager;
+
+    constructor(props: HabitTrackerProps, context: any) {
+        super(props, context);
+        this.dragManager = new HabitDragManager(props.habitStore);
+    }
 
     componentDidMount(): void {
         this.props.habitStore.setRange(MonthRange.current());
@@ -46,13 +54,16 @@ export class HabitTracker extends React.Component<HabitTrackerProps> {
     }
 
     render() {
-        const { range, data } = this.props.habitStore;
+        const { range, orderedPerformances } = this.props.habitStore;
 
-        if (!data) return null;
+        if (!range) return null;
 
-        const habitRows = data.performances.map(performance =>
+        const habitRows = orderedPerformances.map(performance =>
             <HabitRow key={performance.habit.id}
+                      range={range}
                       performance={performance}
+                      draggable={true}
+                      dragManager={this.dragManager}
                       onChangeHabit={this.handleHabitChange}
                       onDeleteHabit={this.handleDeleteHabit}
                       onSetPerformed={this.handleSetPerformed}/>

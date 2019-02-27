@@ -13,3 +13,12 @@
 .menu.open {
     display: block;
 }
+
+.draggable {
+    display: none;
+    cursor: move;
+}
+
+.header:hover .draggable {
+    display: block;
+}

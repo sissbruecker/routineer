@@ -3,7 +3,7 @@ import * as React from 'react';
 import {BasicProps} from '../../util/BasicProps';
 import styles from './Row.module.css';
 
-interface RowProps extends BasicProps {
+interface RowProps extends BasicProps, React.HTMLProps<HTMLDivElement> {
     separator?: boolean;
 }
 
@@ -16,8 +16,11 @@ export class Row extends React.Component<RowProps> {
             this.props.className
         );
 
+        const forwardProps = { ...this.props };
+        delete forwardProps['separator'];
+
         return (
-            <div className={classes}>
+            <div {...forwardProps} className={classes}>
                 {this.props.children}
             </div>
         );

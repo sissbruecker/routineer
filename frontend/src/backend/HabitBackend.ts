@@ -9,6 +9,8 @@ export interface HabitBackend {
 
     saveHabit(habit: Habit): Promise<Habit>;
 
+    moveHabit(habit: Habit, newIndex: number): Promise<any>;
+
     removeHabit(habit: Habit): Promise<any>;
 
     getHabitData(range: DateRange): Promise<HabitData>;

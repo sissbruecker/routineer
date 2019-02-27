@@ -1,13 +1,13 @@
 import cn from 'classnames';
 import React, {Ref} from 'react';
-import styles from './DropdownButton.module.css';
+import styles from './ButtonSquare.module.css';
 
 interface DropdownButtonProps extends React.HTMLProps<HTMLButtonElement> {
     forwardRef?: Ref<HTMLButtonElement>;
     active?: boolean;
 }
 
-export class DropdownButton extends React.Component<DropdownButtonProps> {
+export class ButtonSquare extends React.Component<DropdownButtonProps> {
     render() {
         const classes = cn(
             styles.root,

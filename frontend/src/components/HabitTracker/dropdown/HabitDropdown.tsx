@@ -5,7 +5,7 @@ import React from 'react';
 import {Habit} from '../../../model/Habit';
 import {BasicProps} from '../../../util/BasicProps';
 import {DropDown, DropDownContent, DropDownTrigger, OpenStateCallback} from '../../shared/DropDown/DropDown';
-import {DropdownButton} from '../../shared/DropDown/DropdownButton';
+import {ButtonSquare} from '../scales/ButtonSquare';
 import {DropdownMenuItem} from '../../shared/DropDown/DropdownMenuItem';
 import {DropdownMenuList} from '../../shared/DropDown/DropdownMenuList';
 import {DropdownMenuSeparator} from '../../shared/DropDown/DropdownMenuSeparator';
@@ -55,9 +55,9 @@ export class HabitDropdown extends React.Component<HabitDropdownProps> {
                       ref={this.handleDropdownRef}
                       onOpenStateChange={this.handleOpenStateChange}>
                 <DropDownTrigger>
-                    <DropdownButton active={this.isOpen}>
+                    <ButtonSquare active={this.isOpen}>
                         <i className="fas fa-ellipsis-v"/>
-                    </DropdownButton>
+                    </ButtonSquare>
                 </DropDownTrigger>
                 <DropDownContent>
                     <DropdownWindow>

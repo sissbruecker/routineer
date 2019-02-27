@@ -1,11 +1,10 @@
-import {action, observable} from 'mobx';
+import {action, computed, observable} from 'mobx';
 import shortid from 'shortid';
 import {HabitBackend} from '../backend/HabitBackend';
 import {ColorPalette} from '../model/ColorPalette';
 import {DateRange} from '../model/DateRange';
 import {Day} from '../model/Day';
 import {Habit} from '../model/Habit';
-import {HabitData} from '../model/HabitData';
 import {HabitPerformanceData} from '../model/HabitPerformanceData';
 
 export class HabitStore {
@@ -15,13 +14,26 @@ export class HabitStore {
     @observable
     range: DateRange;
     @observable
-    data: HabitData;
+    performances: HabitPerformanceData[];
+
+    @observable
+    movingPerformance: HabitPerformanceData;
+    @observable
+    originalPerformanceOrder: HabitPerformanceData[];
+
+    @computed
+    get orderedPerformances() {
+        return this.performances
+            ? this.performances.slice()
+                .sort((left, right) => left.habit.orderIndex - right.habit.orderIndex)
+            : [];
+    }
 
     @action
     async setRange(range: DateRange) {
         this.range = range;
 
-        this.data = await this.backend.getHabitData(range);
+        this.performances = (await this.backend.getHabitData(range)).performances;
     }
 
     @action
@@ -39,13 +51,14 @@ export class HabitStore {
         const habit = new Habit();
         habit.id = shortid.generate();
         habit.color = ColorPalette.random();
+        habit.orderIndex = this.nextHabitOrderIndex();
         Object.assign(habit, props);
         await this.backend.saveHabit(habit);
 
         // Create performance row
-        const performance = new HabitPerformanceData(habit, this.range);
+        const performance = new HabitPerformanceData(habit);
 
-        this.data.performances.push(performance);
+        this.performances.push(performance);
     }
 
     @action
@@ -55,10 +68,42 @@ export class HabitStore {
     }
 
     @action
+    beginMoveHabit(performance: HabitPerformanceData) {
+        this.originalPerformanceOrder = this.orderedPerformances.map(HabitPerformanceData.from);
+        this.movingPerformance = performance;
+    }
+
+    @action
+    moveHabitTo(newIndex: number) {
+        const reorderedPerformances = this.orderedPerformances.slice();
+        const previousIndex = reorderedPerformances.indexOf(this.movingPerformance);
+        reorderedPerformances.splice(previousIndex, 1);
+        reorderedPerformances.splice(newIndex, 0, this.movingPerformance);
+
+        reorderedPerformances.forEach((performance, index) => {
+            performance.habit.orderIndex = index;
+        });
+    }
+
+    @action
+    async commitMoveHabit() {
+        await this.backend.moveHabit(this.movingPerformance.habit, this.movingPerformance.habit.orderIndex);
+        this.movingPerformance = null;
+        this.originalPerformanceOrder = null;
+    }
+
+    @action
+    cancelMoveHabit() {
+        this.performances = this.originalPerformanceOrder;
+        this.movingPerformance = null;
+        this.originalPerformanceOrder = null;
+    }
+
+    @action
     async removeHabit(habit: Habit) {
         await this.backend.removeHabit(habit);
-        const index = this.data.performances.findIndex(performance => performance.habit.id === habit.id);
-        this.data.performances.splice(index, 1);
+        const index = this.performances.findIndex(performance => performance.habit.id === habit.id);
+        this.performances.splice(index, 1);
     }
 
     @action
@@ -72,6 +117,10 @@ export class HabitStore {
     }
 
     private getHabitPerformance(habit: Habit) {
-        return this.data.performances.find(performance => performance.habit.id === habit.id);
+        return this.performances.find(performance => performance.habit.id === habit.id);
+    }
+
+    private nextHabitOrderIndex() {
+        return this.performances.length;
     }
 }

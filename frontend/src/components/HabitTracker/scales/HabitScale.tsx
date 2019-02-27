@@ -1,6 +1,7 @@
 import bind from 'bind-decorator';
 import {observer} from 'mobx-react';
 import * as React from 'react';
+import {DateRange} from '../../../model/DateRange';
 import {Day} from '../../../model/Day';
 import {Habit} from '../../../model/Habit';
 import {HabitPerformanceData} from '../../../model/HabitPerformanceData';
@@ -8,6 +9,7 @@ import {BaseScale} from './BaseScale';
 import {PerformedSquare} from './PerformedSquare';
 
 interface HabitScaleProps {
+    range: DateRange;
     performance: HabitPerformanceData;
 
     onSetPerformed(habit: Habit, day: Day, performed: boolean);
@@ -22,7 +24,7 @@ export class HabitScale extends React.Component<HabitScaleProps> {
     }
 
     render() {
-        return <BaseScale range={this.props.performance.range} squareRenderer={this.renderSquare}/>
+        return <BaseScale range={this.props.range} squareRenderer={this.renderSquare}/>
     }
 
     @bind

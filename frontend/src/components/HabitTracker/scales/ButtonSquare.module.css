@@ -6,12 +6,12 @@
     line-height: inherit;
     background: none;
     background: no-repeat center;
+    border: none;
     outline: none;
     cursor: pointer;
-
-    padding: 2px 4px;
-    border: solid transparent 1px;
-    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .root:hover, .root.active {

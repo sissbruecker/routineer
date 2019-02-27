@@ -1,5 +1,5 @@
 .root {
-    --row-label-size: 8;
+    --row-label-size: 9;
 }
 
 .root {
@@ -12,5 +12,5 @@
 }
 
 .root > input {
-    width: calc(calc(var(--row-label-size) - 1) * var(--grid-size));
+    width: calc(calc(var(--row-label-size) - 2) * var(--grid-size));
 }
